@@ -1,0 +1,18 @@
+{
+    "name": "laravelLogger/error-reporter",
+    "description": "Package of laravel error Reporting and Request Logging.",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Arun p",
+            "email": "ar.dev.mac@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "laravelLogger\\Errorreporter\\": "src/"
+        }
+    }
+}
