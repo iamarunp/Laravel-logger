@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateLoggersTable extends Migration
 {
@@ -15,7 +15,15 @@ class CreateLoggersTable extends Migration
     {
         Schema::create('loggers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('type');
+            $table->string('extras');
+            $table->text('route');
+            $table->text('request');
+            $table->text('headers');
+            $table->text('exception');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 
