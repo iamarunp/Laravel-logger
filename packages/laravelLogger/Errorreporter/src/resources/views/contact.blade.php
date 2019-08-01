@@ -4,11 +4,23 @@
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-            <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+         .
+         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+         <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" crossorigin="anonymous">
+
+
+         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+
+         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+
+
+            <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+
+
             <style>/*Main CSS*/
 
 
@@ -26,7 +38,7 @@ li,ul{
     font-size: 18px;
 }
 .bg-image {
-    background: url(../images/background-login.jpg) no-repeat 0 0 / cover;
+    /* background: url(../images/background-login.jpg) no-repeat 0 0 / cover; */
     position: relative;
     width: 100%;
     height: 100vh;
@@ -134,15 +146,15 @@ li,ul{
 }
 
 .user input {
-    background: rgba(0, 0, 0, 0) url("../images/user.png") no-repeat scroll 7px 12px;
+    /* background: rgba(0, 0, 0, 0) url("../images/user.png") no-repeat scroll 7px 12px; */
 }
 
 .pass input {
-    background: rgba(0, 0, 0, 0) url("../images/password.png") no-repeat scroll 7px 12px;
+    /* background: rgba(0, 0, 0, 0) url("../images/password.png") no-repeat scroll 7px 12px; */
 }
 
 .mail input {
-    background: rgba(0, 0, 0, 0) url("../images/mail.png") no-repeat scroll 4px 12px;
+    /* background: rgba(0, 0, 0, 0) url("../images/mail.png") no-repeat scroll 4px 12px; */
 }
 
 .login-signup .tab-content {
@@ -258,7 +270,7 @@ li,ul{
 }
 
 .add-project::before {
-    background: rgba(0, 0, 0, 0) url("../images/plus.png") no-repeat scroll 0 0;
+    /* background: rgba(0, 0, 0, 0) url("../images/plus.png") no-repeat scroll 0 0; */
     content: "";
     ;
     height: 12px;
@@ -341,7 +353,7 @@ li,ul{
     font-size: 15px;
     padding: 15px 9px;
     width: 100%;
-    background: rgba(0, 0, 0, 0) url("../images/search.png") no-repeat scroll 99% 12px;
+    /* background: rgba(0, 0, 0, 0) url("../images/search.png") no-repeat scroll 99% 12px; */
     color: #8492af;
 }
 
@@ -718,18 +730,14 @@ header {
         <div class="row display-table-row">
             <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
                 <div class="logo">
-                    <a hef="home.html"><img src="http://jskrishna.com/work/merkury/images/logo.png" alt="merkery_logo" class="hidden-xs hidden-sm">
+                    {{-- <a hef="home.html"><img src="http://jskrishna.com/work/merkury/images/logo.png" alt="merkery_logo" class="hidden-xs hidden-sm">
                         <img src="http://jskrishna.com/work/merkury/images/circle-logo.png" alt="merkery_logo" class="visible-xs visible-sm circle-logo">
-                    </a>
+                    </a> --}}
                 </div>
                 <div class="navi">
                     <ul>
-                        <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
-                        <li><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Workflow</span></a></li>
-                        <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Statistics</span></a></li>
-                        <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Calender</span></a></li>
-                        <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Users</span></a></li>
-                        <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Setting</span></a></li>
+                        <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Error Log</span></a></li>
+                        <li><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Request Log</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -749,7 +757,7 @@ header {
                                 </div>
                             </nav>
                             <div class="search hidden-xs hidden-sm">
-                                <input type="text" placeholder="Search" id="search">
+                                {{-- <input type="text" placeholder="Search" id="search"> --}}
                             </div>
                         </div>
                         <div class="col-md-5">
@@ -764,7 +772,7 @@ header {
                                         </a>
                                     </li>
                                     <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="http://jskrishna.com/work/merkury/images/user-pic.jpg" alt="user">
+                                        {{-- <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="http://jskrishna.com/work/merkury/images/user-pic.jpg" alt="user"> --}}
                                             <b class="caret"></b></a>
                                         <ul class="dropdown-menu">
                                             <li>
@@ -786,43 +794,21 @@ header {
                     </header>
                 </div>
                 <div class="user-dashboard">
-                    <h1>Hello, JS</h1>
+                    <h1>Request Log.</h1>
                     <div class="row">
-                        <div class="col-md-5 col-sm-5 col-xs-12 gutter">
-
-                            <div class="sales">
-                                <h2>Your Sale</h2>
-
-                                <div class="btn-group">
-                                    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span>Period:</span> Last Year
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a href="#">2012</a>
-                                        <a href="#">2014</a>
-                                        <a href="#">2015</a>
-                                        <a href="#">2016</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-7 col-sm-7 col-xs-12 gutter">
-
-                            <div class="sales report">
-                                <h2>Report</h2>
-                                <div class="btn-group">
-                                    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span>Period:</span> Last Year
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a href="#">2012</a>
-                                        <a href="#">2014</a>
-                                        <a href="#">2015</a>
-                                        <a href="#">2016</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <table id="example" class="cell-border" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Method</th>
+                                    <th>Route</th>
+                                    <th>Request</th>
+                                    <th>Exception</th>
+                                    {{-- <th>Headers</th> --}}
+                                    {{-- <th>Extras</th> --}}
+                                    <th style="width:100px" >Created at</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -856,6 +842,66 @@ header {
 
         </div>
     </div>
+<script>
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "ajax": "{{url('/api/logs')}}",
+            "dataType": "jsonp",
+        // "columns": [
+        //     { "data": "route" },
+        //     { "data": "request" },
+        //     { "data": "exception" },
+        //     // { "data": "headers" },
+        //     // { "data": "extras" },
+        //     { "data": "created_at" }
+        // ],
+        "columnDefs": [ {
+        "targets": 0,
+        "data": "extras",
+        "render": function ( data, type, row, meta ) {
+        return data;
+        }
+        } ,{
+        "targets": 1,
+        "data": "route",
+        "render": function ( data, type, row, meta ) {
+            return data;
+        }
+        } , {
+        "targets": 2,
+        "data": "request",
+        "render": function ( data, type, row, meta ) {
+        // return "<pre class='jsonBeauty'>"+data.replace(new RegExp('","', 'g'), '",\n"')+"</pre>";
+        return "<pre class='jsonBeauty'>"+data+"</pre>";
+        }
+        },{
+        "targets": 3,
+        "data": "exception",
+        "render": function ( data, type, row, meta ) {
+        return JSON.parse(data).message;
+        }
+        },{
+        "targets": 4,
+        "data": "created_at",
+        "render": function ( data, type, row, meta ) {
+            var data=new Date(data.split(' ')[0]);
 
+        return data.toDateString()+'\n'+data.toTimeString().split(' ')[0];
+        }
+        } ],
+
+    } );
+} );
+
+function isJson(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
+</script>
 </body>
     </html>
