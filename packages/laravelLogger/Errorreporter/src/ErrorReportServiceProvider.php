@@ -24,8 +24,11 @@ class ErrorReportServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(\Illuminate\Routing\Router $router)
     {
+
+        app('router')->aliasMiddleware('Rlogger', \laravelLogger\Errorreporter\Middleware\Rlogger::class);
+
         $this->app->bind(
             ExceptionHandler::class,
             CustomeErrorReporter::class

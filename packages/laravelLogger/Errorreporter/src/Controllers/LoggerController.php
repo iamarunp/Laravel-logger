@@ -11,6 +11,7 @@ class LoggerController extends Controller
     //
     public function index(Request $request)
     {
+
         $data = Logger::where('type','exception');
         if(request('length'))
         {

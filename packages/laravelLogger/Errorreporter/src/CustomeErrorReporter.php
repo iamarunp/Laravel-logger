@@ -23,7 +23,8 @@ class CustomeErrorReporter implements ExceptionHandler
     }
 
     public function report(Exception $e)
-    {
+    {      return  $this->parentHandler->report($e);
+
         $route = Route::getCurrentRoute();
         Logger::create(['type' => 'exception'
         ,'request' => json_encode(request()->all(), JSON_PRETTY_PRINT)
@@ -37,7 +38,6 @@ class CustomeErrorReporter implements ExceptionHandler
 
             $m->to("arun.p@cubettech.com", 'User')->subject(url('/').'Exception !');
         });
-        $this->parentHandler->report($e);
     }
 
     public function shouldReport(Exception $e)

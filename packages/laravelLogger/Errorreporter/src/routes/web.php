@@ -12,6 +12,6 @@ Route::post('dashboard', function () {
 
 Route::group(['prefix' => 'api','namespace' => '\laravelLogger\Errorreporter\Controllers'], function () {
 
-    Route::get('logs', 'LoggerController@index');
+    Route::get('logs', 'LoggerController@index')->middleware('Rlogger');
 
 });
