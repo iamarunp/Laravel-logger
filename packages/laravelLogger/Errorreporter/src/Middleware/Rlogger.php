@@ -3,6 +3,8 @@
 namespace laravelLogger\Errorreporter\Middleware;
 
 use Closure;
+use laravelLogger\Errorreporter\Models\LoggerRequests;
+use Mail;
 
 class Rlogger
 {
@@ -29,30 +31,59 @@ class Rlogger
             \DB::rollBack();
             throw $e;
         }
+        return $next($request);
+
     }
     public function terminate($request, $response)
     {
 
-        $queries = \DB::getQueryLog();
-     if ( env('API_DATALOGGER', true) ) {
-       $endTime = microtime(true);
-       $filename = 'api_datalogger_' . date('d-m-y') . '.log';
-       $dataToLog  = 'Time: '   . gmdate("F j, Y, g:i a") . "\n*******\n";
-       $dataToLog .= 'Duration: ' . number_format($endTime - LARAVEL_START, 3) . "\n*******\n";
-       $dataToLog .= 'IP Address: ' . $request->ip() . "\n*******\n";
-       $dataToLog .= 'URL: '    . $request->fullUrl() . "\n*******\n";
-       $dataToLog .= 'Method: ' . $request->method() . "\n*******\n";
-       $dataToLog .= 'Input: '  . $request->getContent() . "\n*******\n";
-       $dataToLog .= 'Output: ' . $response->getContent() . "\n*******\n";
-       $dataToLog .= 'Querries: ' .json_encode($queries,JSON_PRETTY_PRINT) . "\n*******\n";
-      \File::append( storage_path('logs' . DIRECTORY_SEPARATOR . $filename), $dataToLog . "\n" . str_repeat("=", 20) . "\n\n");
-      }
 
+        $queries = \DB::getQueryLog();
       if ($response instanceof Response && $response->getStatusCode() > 399) {
         \DB::rollBack();
+
+        $error_type="Exception";
     } else {
         \DB::commit();
+        $error_type="Request";
+
     }
+     if ( env('API_DATALOGGER', true) ) {
+       $endTime = microtime(true);
+       $filename = 'api_datalogger_rlogger.log';
+       $dataToLog =["Time"=> gmdate("F j, Y, g:i a"),
+                    "Duration" => number_format($endTime - LARAVEL_START, 3),
+                    "Ip-address"=> $request->ip(),
+                    "Url"=>$request->fullUrl(),
+                    "method"=>$request->method(),
+                    "input"=>$request->getContent(),
+                    "headers"=>request()->header(),
+                    "response"=>$response->getContent(),
+                    "queries"=>$queries ,
+                    "type"=>$error_type ];
+        $data = LoggerRequests::create($dataToLog);
+
+    //     $dataToLog = json_encode($dataToLog);
+
+    //  \File::append( storage_path('logs' . DIRECTORY_SEPARATOR . $filename), $dataToLog . "\n" . str_repeat("=", 20) . "\n\n");
+      }
+
+      if ( env('Exception_mail_alert', true) ) {
+
+      Mail::send('contactform::emails.exception', ['exception' => $e, "request" => json_encode(request()->all(), JSON_PRETTY_PRINT), "header" => json_encode(request()->header(), JSON_PRETTY_PRINT)], function ($m) {
+
+        $m->from('arun.p@cubettech.com', "no-reply");
+
+        $m->to("arun.p@cubettech.com", 'User')->subject(url('/').'Exception !');
+    });
+
+    }
+
+
+
+
+
+    return  $response;
 
      }
 
