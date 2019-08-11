@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-class CreateLoggersTable extends Migration
+class CreateRequestLoggerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateLoggersTable extends Migration
      */
     public function up()
     {
-        Schema::create('loggers_requests', function (Blueprint $table) {
+        Schema::create('request_logger', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('time');
             $table->string('duration');
@@ -27,8 +27,6 @@ class CreateLoggersTable extends Migration
             $table->string('type');
             $table->timestamps();
             $table->softDeletes();
-
-
         });
     }
 
@@ -39,6 +37,6 @@ class CreateLoggersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('loggers_requests');
+        Schema::dropIfExists('request_logger');
     }
 }

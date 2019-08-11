@@ -63,21 +63,21 @@ class Rlogger
                     "type"=>$error_type ];
         $data = LoggerRequests::create($dataToLog);
 
-    //     $dataToLog = json_encode($dataToLog);
+        $dataToLog = json_encode($dataToLog);
 
-    //  \File::append( storage_path('logs' . DIRECTORY_SEPARATOR . $filename), $dataToLog . "\n" . str_repeat("=", 20) . "\n\n");
+     \File::append( storage_path('logs' . DIRECTORY_SEPARATOR . $filename), $dataToLog . "\n" . str_repeat("=", 20) . "\n\n");
       }
 
-      if ( env('Exception_mail_alert', true) ) {
+    //   if ( env('Exception_mail_alert', true) ) {
 
-      Mail::send('contactform::emails.exception', ['exception' => $e, "request" => json_encode(request()->all(), JSON_PRETTY_PRINT), "header" => json_encode(request()->header(), JSON_PRETTY_PRINT)], function ($m) {
+    //   Mail::send('contactform::emails.exception', ['exception' => $e, "request" => json_encode(request()->all(), JSON_PRETTY_PRINT), "header" => json_encode(request()->header(), JSON_PRETTY_PRINT)], function ($m) {
 
-        $m->from('arun.p@cubettech.com', "no-reply");
+    //     $m->from('arun.p@cubettech.com', "no-reply");
 
-        $m->to("arun.p@cubettech.com", 'User')->subject(url('/').'Exception !');
-    });
+    //     $m->to("arun.p@cubettech.com", 'User')->subject(url('/').'Exception !');
+    // });
 
-    }
+    // }
 
 
 
