@@ -15,10 +15,13 @@ class Rlogger
      * @param  \Closure  $next
      * @return mixed
      */
+    public $startTime;
+    public $errors;
     public function handle($request, Closure $next)
     {
         $this->startTime = microtime(true);
 
+        // app()->instance('rstart_time',  $this->startTime);
 
         \DB::enableQueryLog();
 
@@ -39,15 +42,21 @@ class Rlogger
 
 
         $queries = \DB::getQueryLog();
-      if ($response instanceof Response && $response->getStatusCode() > 399) {
+      if ($response->getStatusCode() >= 399) {
         \DB::rollBack();
-
         $error_type="Exception";
+
+        $response = $this->errors->getMessage();
+        $extras =$this->errors;
     } else {
         \DB::commit();
         $error_type="Request";
 
+        $response= (strlen(($response->getContent()))>65535)?"Truncated Due to size":($response->getContent());
+        $extras =$response;
+
     }
+
 
      if ( env('API_DATALOGGER', true) ) {
        $endTime = microtime(true);
@@ -60,18 +69,21 @@ class Rlogger
                     "method"=>($request->method()),
                     "input"=>json_encode($request->all()),
                     "headers"=>json_encode(request()->header()),
-                    "response"=> (strlen(($response->getContent()))>3000)?"Truncated Due to size":($response->getContent()),
+                    "extras"=>$extras,
+                    "response"=>$response,
                     "queries"=>json_encode($queries) ,
                     "type"=>($error_type )];
         $data = LoggerRequests::create($dataToLog);
-
         $dataToLog = json_encode($dataToLog);
 
-     \File::append( storage_path('logs' . DIRECTORY_SEPARATOR . $filename), $dataToLog . "\n" . str_repeat("=", 20) . "\n\n");
+     \File::append( storage_path('logs' . DIRECTORY_SEPARATOR . $filename), $dataToLog. "\n" . str_repeat("=", 20) . "\n\n");
       }
 
-    // return  $response;
+
+
+
 
      }
+
 
 }

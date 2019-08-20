@@ -9,6 +9,7 @@ use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\Console\Application;
 use laravelLogger\Errorreporter\Models\Logger;
+use laravelLogger\Errorreporter\Middleware\Rlogger;
 use Mail;
 class CustomeErrorReporter implements ExceptionHandler
 {
@@ -42,6 +43,10 @@ class CustomeErrorReporter implements ExceptionHandler
 
     public function render($request, Exception $e)
     {
+        // $myObj = resolve('rstart_time');
+        $dd =  app('Rlogger');
+        $dd->errors=$e;
+        // dd($e->getMessage());
         return $this->parentHandler->render($request, $e);
     }
 

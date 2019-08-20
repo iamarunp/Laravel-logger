@@ -25,7 +25,7 @@ class LoggerController extends Controller
         }
         switch (request('order')[0]['column']) {
             case "0":
-                     $data=$data->orderBy('id',request('order')[0]['dir']);
+                     $data=$data->orderBy('method',request('order')[0]['dir']);
                 break;
             case "1":
                     $data=$data->orderBy('path',request('order')[0]['dir']);

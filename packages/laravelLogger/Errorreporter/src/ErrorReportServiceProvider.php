@@ -33,13 +33,17 @@ class ErrorReportServiceProvider extends ServiceProvider
             __DIR__ . '/config' => config_path(),
         ]);
 
+        $this->app->singleton('Rlogger', function($app)
+        {
+            return new \laravelLogger\Errorreporter\Middleware\Rlogger;
+        });
 
-        app('router')->aliasMiddleware('Rlogger', \laravelLogger\Errorreporter\Middleware\Rlogger::class);
+        // app('router')->aliasMiddleware('Rlogger', \laravelLogger\Errorreporter\Middleware\Rlogger::class);
 
-        // $this->app->bind(
-        //     ExceptionHandler::class,
-        //     CustomeErrorReporter::class
-        // );
+        $this->app->bind(
+            ExceptionHandler::class,
+            CustomeErrorReporter::class
+        );
 // dd("adsad");
         $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
         $this->loadViewsFrom(__DIR__ . '/resources/views', 'contactform');

@@ -24,6 +24,7 @@ class CreateRequestLoggerTable extends Migration
             $table->text('input');
             $table->text('headers');
             $table->text('response');
+            $table->text('extras');
             $table->text('queries');
             $table->string('type');
             $table->timestamps();
