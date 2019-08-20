@@ -19,6 +19,7 @@ class CreateRequestLoggerTable extends Migration
             $table->string('duration');
             $table->string('ip');
             $table->text('url');
+            $table->text('path');
             $table->text('method');
             $table->text('input');
             $table->text('headers');

@@ -17,6 +17,9 @@ class ErrorReportServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        $this->mergeConfigFrom(
+            __DIR__ . '/config/laravel_log_config.php', 'laravel-log-config'
+        );
     }
 
     /**
@@ -26,13 +29,17 @@ class ErrorReportServiceProvider extends ServiceProvider
      */
     public function boot(\Illuminate\Routing\Router $router)
     {
+        $this->publishes([
+            __DIR__ . '/config' => config_path(),
+        ]);
+
 
         app('router')->aliasMiddleware('Rlogger', \laravelLogger\Errorreporter\Middleware\Rlogger::class);
 
-        $this->app->bind(
-            ExceptionHandler::class,
-            CustomeErrorReporter::class
-        );
+        // $this->app->bind(
+        //     ExceptionHandler::class,
+        //     CustomeErrorReporter::class
+        // );
 // dd("adsad");
         $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
         $this->loadViewsFrom(__DIR__ . '/resources/views', 'contactform');

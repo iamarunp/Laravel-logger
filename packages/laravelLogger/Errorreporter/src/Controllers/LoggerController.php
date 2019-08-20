@@ -4,7 +4,7 @@ namespace laravelLogger\Errorreporter\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use laravelLogger\Errorreporter\Models\Logger;
+use laravelLogger\Errorreporter\Models\LoggerRequests;
 
 class LoggerController extends Controller
 {
@@ -12,7 +12,7 @@ class LoggerController extends Controller
     public function index(Request $request)
     {
 
-        $data = Logger::where('type','exception');
+        $data = new LoggerRequests;
         if(request('length'))
         {
             $take=request('length');
@@ -23,11 +23,31 @@ class LoggerController extends Controller
             $skip=request('start');
             $data=$data->skip($skip);
         }
-        $data=$data->orderBy('id','DESC')->get();
-        $data_total_count = Logger::where('type','exception')->count();
+        switch (request('order')[0]['column']) {
+            case "0":
+                     $data=$data->orderBy('id',request('order')[0]['dir']);
+                break;
+            case "1":
+                    $data=$data->orderBy('path',request('order')[0]['dir']);
+                break;
+            case "3":
+                      $data=$data->orderBy('type',request('order')[0]['dir']);
+                break;
+            case "4":
+                    $data=$data->orderBy('duration',request('order')[0]['dir']);
+                break;
+            case "5":
+                    $data=$data->orderBy('created_at',request('order')[0]['dir']);
+                break;
+
+            default:
+            $data=$data->orderBy('id','DESC');
+        }
+        $data=$data->get();
+        $data_total_count = LoggerRequests::count();
         $data_count=count($data);
         $result = ['data' =>$data,
-        'draw' => $data_count,
+        'draw' => (int)request('draw'),
         'recordsFiltered'=> $data_total_count,
         'recordsTotal'=> $data_total_count];
         return $result;
