@@ -46,7 +46,7 @@ class ErrorReportServiceProvider extends ServiceProvider
         );
 // dd("adsad");
         $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
-        $this->loadViewsFrom(__DIR__ . '/resources/views', 'contactform');
+        $this->loadViewsFrom(__DIR__ . '/resources/views', 'dashboard');
 
         $this->loadMigrationsFrom(__DIR__ . '/Database/migrations');
     }
